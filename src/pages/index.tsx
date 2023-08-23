@@ -13,14 +13,14 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #8447c9;
+  color: #333332;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
 `;
 
 const Text = styled.p`
-  color: #8447c9;
+  color: #333332;
   font-size: 18px;
   margin-bottom: 20px;
 `;
@@ -29,7 +29,7 @@ const Button = styled.button`
   display: block;
   width: 275px;
   height: 60px;
-  background-color: #5f4b8b;
+  background-color: #333332;
   color: white;
   text-align: center;
   line-height: 35px;
@@ -49,7 +49,7 @@ const Button = styled.button`
   }
 `;
 
-const ButtonContainer = styled.div`
+const CustomContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,23 +79,22 @@ export default function Home() {
     return (
       <Container>
         <Layout>
-          <Title>Welcome {user.name}!</Title>
-          <ButtonContainer>
+          <CustomContainer>
             <Button onClick={() => handleDraw()}>Tables and Orders</Button>
             <Button onClick={() => handleCheckout()}>Checkout Order</Button>
             <Button onClick={() => handleManagement()}>Management</Button>
             <Button onClick={() => handleReports()}>Reports</Button>
-          </ButtonContainer>
+          </CustomContainer>
         </Layout>
       </Container>
     );
   } else {
     return (
-      <Container>
-        <Title>Zamaco POS</Title>
+      <CustomContainer>
+        <Title>TP Auto Sales</Title>
         <Text>Please log in to continue.</Text>
         <Button onClick={() => (window.location.href = '/api/auth/login')}>Log in</Button>
-      </Container>
+      </CustomContainer>
     );
   }
 }

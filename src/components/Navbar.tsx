@@ -1,6 +1,7 @@
 // components/Navbar.tsx
 import styled from "styled-components";
 import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const StyledNavbar = styled.nav`
   position: fixed;
@@ -27,21 +28,39 @@ const NavbarImageContainer = styled.div`
 `;
 
 const Navbar = () => {
-  return (
-    <StyledNavbar>
-      <a href="/">
-        <NavbarImageContainer>
-        <Image src="/Zamaco.png" alt="Zamaco Logo" width={60} height={60} />
-        </NavbarImageContainer>
-      </a>
-      <NavbarLink href="/api/auth/login">Log In</NavbarLink>
-      <NavbarLink href="/api/auth/logout">Log Out</NavbarLink>
-      <NavbarLink href="/transaction">Checkout</NavbarLink>
-      <NavbarLink href="/management">Management</NavbarLink>
-      <NavbarLink href="/reports">Reports</NavbarLink>
-      <div style={{ padding: "10px" }}></div>
-    </StyledNavbar>
-  );
+  const { user, error, isLoading } = useUser();
+  
+  if (user) {
+    return (
+      <StyledNavbar>
+        <a href="/">
+          <NavbarImageContainer>
+            <Image src="/Zamaco.png" alt="Zamaco Logo" width={60} height={60} />
+          </NavbarImageContainer>
+        </a>
+        <NavbarLink href="/api/auth/logout">Log Out</NavbarLink>
+        <NavbarLink href="/transaction">Checkout</NavbarLink>
+        <NavbarLink href="/management">Management</NavbarLink>
+        <NavbarLink href="/reports">Reports</NavbarLink>
+        <div style={{ padding: "10px" }}></div>
+      </StyledNavbar>
+    );
+  } else {
+    return (
+      <StyledNavbar>
+        <a href="/">
+          <NavbarImageContainer>
+            <Image src="/Zamaco.png" alt="Zamaco Logo" width={60} height={60} />
+          </NavbarImageContainer>
+        </a>
+        <NavbarLink href="/api/auth/login">Log In</NavbarLink>
+        <NavbarLink href="/transaction">Checkout</NavbarLink>
+        <NavbarLink href="/management">Management</NavbarLink>
+        <NavbarLink href="/reports">Reports</NavbarLink>
+        <div style={{ padding: "10px" }}></div>
+      </StyledNavbar>
+    );
+  }
 };
 
 export default Navbar;
