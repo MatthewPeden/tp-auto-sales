@@ -8,12 +8,21 @@ const StyledNavbar = styled.nav`
   top: 0;
   left: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 60px;
-  background-color: #bda0d9;
+  background-color: #333332;
   color: white;
+  padding-left: 1px;
+  padding-right: 1px;
+`;
+
+const NavbarInner = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #b8b8b8;
 `;
 
 const NavbarLink = styled.a`
@@ -21,6 +30,24 @@ const NavbarLink = styled.a`
   text-decoration: none;
   margin-right: 20px;
   padding: 10px;
+
+  &:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+`;
+
+const UserNavbarLink = styled.a`
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 10px;
+  margin-left: auto;
+
+  &:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
 `;
 
 const NavbarImageContainer = styled.div`
@@ -33,16 +60,16 @@ const Navbar = () => {
   if (user) {
     return (
       <StyledNavbar>
-        <a href="/">
-          <NavbarImageContainer>
-            <Image src="/Zamaco.png" alt="Zamaco Logo" width={60} height={60} />
-          </NavbarImageContainer>
-        </a>
-        <NavbarLink href="/api/auth/logout">Log Out</NavbarLink>
-        <NavbarLink href="/transaction">Checkout</NavbarLink>
-        <NavbarLink href="/management">Management</NavbarLink>
-        <NavbarLink href="/reports">Reports</NavbarLink>
-        <div style={{ padding: "10px" }}></div>
+        <NavbarInner>
+          <a href="/">
+            <NavbarImageContainer>
+              <Image src="/Zamaco.png" alt="TP Auto Sales" width={150} height={26} />
+            </NavbarImageContainer>
+          </a>
+          <NavbarLink href="/fixed_trucks">Fixed Trucks</NavbarLink>
+          <NavbarLink href="/wrecked_trucks">Wrecked Trucks</NavbarLink>
+          <UserNavbarLink href="/api/auth/logout">Log Out</UserNavbarLink>
+        </NavbarInner>
       </StyledNavbar>
     );
   } else {
@@ -50,14 +77,12 @@ const Navbar = () => {
       <StyledNavbar>
         <a href="/">
           <NavbarImageContainer>
-            <Image src="/Zamaco.png" alt="Zamaco Logo" width={60} height={60} />
+            <Image src="/Zamaco.png" alt="TP Auto Sales" width={60} height={60} />
           </NavbarImageContainer>
         </a>
-        <NavbarLink href="/api/auth/login">Log In</NavbarLink>
-        <NavbarLink href="/transaction">Checkout</NavbarLink>
-        <NavbarLink href="/management">Management</NavbarLink>
-        <NavbarLink href="/reports">Reports</NavbarLink>
-        <div style={{ padding: "10px" }}></div>
+        <NavbarLink href="/fixed_trucks">Fixed Trucks</NavbarLink>
+        <NavbarLink href="/wrecked_trucks">Wrecked Trucks</NavbarLink>
+        <UserNavbarLink href="/api/auth/login">Log In</UserNavbarLink>
       </StyledNavbar>
     );
   }

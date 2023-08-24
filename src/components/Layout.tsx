@@ -14,8 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Main = styled.main`
-  /* Subtract the height of the navbar from the available viewport height */
-  height: calc(100vh - ${props => props.theme.navbarHeight}px);
+  padding-top: 100px;
   overflow-y: auto; /* Add a scrollbar if the content overflows */
 `;
 
