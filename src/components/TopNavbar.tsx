@@ -3,21 +3,18 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
-const StyledNavbar = styled.nav`
+const TopNavbar = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
   width: 100%;
-  height: 60px;
+  display: inline-block;
   background-color: #333332;
   color: white;
-  padding-left: 1px;
-  padding-right: 1px;
+  padding: 1px;
 `;
 
-const NavbarInner = styled.div`
+const TopNavbarInner = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -54,13 +51,13 @@ const NavbarImageContainer = styled.div`
   margin-left: 10px;
 `;
 
-const Navbar = () => {
+const TopNavbarReturn = () => {
   const { user, error, isLoading } = useUser();
   
   if (user) {
     return (
-      <StyledNavbar>
-        <NavbarInner>
+      <TopNavbar>
+        <TopNavbarInner>
           <a href="/">
             <NavbarImageContainer>
               <Image src="/Zamaco.png" alt="TP Auto Sales" width={150} height={26} />
@@ -69,23 +66,25 @@ const Navbar = () => {
           <NavbarLink href="/fixed_trucks">Fixed Trucks</NavbarLink>
           <NavbarLink href="/wrecked_trucks">Wrecked Trucks</NavbarLink>
           <UserNavbarLink href="/api/auth/logout">Log Out</UserNavbarLink>
-        </NavbarInner>
-      </StyledNavbar>
+        </TopNavbarInner>
+      </TopNavbar>
     );
   } else {
     return (
-      <StyledNavbar>
-        <a href="/">
-          <NavbarImageContainer>
-            <Image src="/Zamaco.png" alt="TP Auto Sales" width={60} height={60} />
-          </NavbarImageContainer>
-        </a>
-        <NavbarLink href="/fixed_trucks">Fixed Trucks</NavbarLink>
-        <NavbarLink href="/wrecked_trucks">Wrecked Trucks</NavbarLink>
-        <UserNavbarLink href="/api/auth/login">Log In</UserNavbarLink>
-      </StyledNavbar>
+      <TopNavbar>
+        <TopNavbarInner>
+          <a href="/">
+            <NavbarImageContainer>
+              <Image src="/Zamaco.png" alt="TP Auto Sales" width={60} height={60} />
+            </NavbarImageContainer>
+          </a>
+          <NavbarLink href="/fixed_trucks">Fixed Trucks</NavbarLink>
+          <NavbarLink href="/wrecked_trucks">Wrecked Trucks</NavbarLink>
+          <UserNavbarLink href="/api/auth/login">Log In</UserNavbarLink>
+        </TopNavbarInner>
+      </TopNavbar>
     );
   }
 };
 
-export default Navbar;
+export default TopNavbarReturn;
