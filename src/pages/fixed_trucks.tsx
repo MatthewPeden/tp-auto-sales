@@ -1,15 +1,16 @@
 import styled from 'styled-components';
-import { withRole, getServerSidePropsForManager } from './api/auth/RBAC.tsx';
+// import { withRole, getServerSidePropsForManager } from './api/auth/RBAC.tsx';
 import pool from '../../db';
 import router from 'next/router';
 import Layout from "../components/Layout";
+import Image from 'next/image';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 60px);
   background-color: #ffffff;
-  padding: 70px 20px 20px 20px;
+  padding: 80px 20px 20px 20px;
 `;
 
 const Title = styled.h1`
@@ -163,7 +164,7 @@ export const getServerSideProps = async (context: any) => {
   
     try {
       const connection = await pool.getConnection();
-      const rows = await connection.query('SELECT * FROM trucks');
+      const rows = await connection.query('SELECT t.id, t.name, t.description, t.status, ti.id as image_id, ti.image_path FROM trucks AS t LEFT JOIN truck_images AS ti ON t.id = ti.truck_id WHERE t.status = 1 AND ti.is_primary = true');
       connection.release();
   
       const trucks = rows.map((row: { id: number; name: string; description: string; status: number; }) => ({
