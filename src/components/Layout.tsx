@@ -12,11 +12,20 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
+  background-color: #ededed;
 `;
 
 const Main = styled.main`
-  overflow-y: auto; /* Add a scrollbar if the content overflows */
+  overflow-y: auto;
+  max-width: 80%;   // Set maximum width
+  margin: 0 auto;  // Center it horizontally
+  width: 100%;     // Use the full width available
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center children horizontally
+  justify-content: center; // Center children vertically
 `;
+
 
 const LeftVerticalDivider = styled.hr`
   width: 10px;

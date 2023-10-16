@@ -37,9 +37,10 @@ const CustomContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   width: 100%;
-  height: 100vh; /* Take up the whole viewport height */
+  height: 100vh;
+  background-color: #f7f7f7;
 `;
 
 const handleFixed = () => {

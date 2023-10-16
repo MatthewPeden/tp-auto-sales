@@ -33,7 +33,7 @@ const ManageTrucksPage: React.FC<ManageTrucksPageProps> = ({ trucks }) => {
   return (
     <Layout>
       <TrucksPageContainer>
-        <TrucksPageTitle>Fixed Trucks</TrucksPageTitle>
+        <TrucksPageTitle>Wrecked Trucks</TrucksPageTitle>
         <TrucksPageActionButton onClick={() => handleAdd()}>Add New Truck</TrucksPageActionButton>
         <TrucksPageContent>
           {trucks.map(truck => (
@@ -53,7 +53,7 @@ const ManageTrucksPage: React.FC<ManageTrucksPageProps> = ({ trucks }) => {
                 <TrucksActionButtonContainer>
                   <TrucksPageActionButton onClick={() => handleAdd()}>Edit</TrucksPageActionButton>
                   <TrucksPageActionButton onClick={() => handleAdd()}>Delete</TrucksPageActionButton>
-                  <TrucksPageActionButton onClick={() => handleAdd()}>Move to Wrecked</TrucksPageActionButton>
+                  <TrucksPageActionButton onClick={() => handleAdd()}>Move to Fixed</TrucksPageActionButton>
                 </TrucksActionButtonContainer>
               </TrucksPageItem>
             </Link>
@@ -72,7 +72,7 @@ export const getServerSideProps = async (context: any) => {
   
     try {
       const connection = await pool.getConnection();
-      const rows = await connection.query('SELECT t.id, t.name, t.description, t.status, ti.id as image_id, ti.image_path FROM trucks AS t LEFT JOIN truck_images AS ti ON t.id = ti.truck_id WHERE t.status = 1 AND ti.primary = 1');
+      const rows = await connection.query('SELECT t.id, t.name, t.description, t.status, ti.id as image_id, ti.image_path FROM trucks AS t LEFT JOIN truck_images AS ti ON t.id = ti.truck_id WHERE t.status = 0 AND ti.primary = 1');
       connection.release();
   
       const trucks = rows.map((row: { id: number; name: string; description: string; status: number; image_path: string}) => ({
